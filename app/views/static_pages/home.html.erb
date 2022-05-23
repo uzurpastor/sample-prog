@@ -1,4 +1,11 @@
-<% provide(:title, "home") %>
+<% provide :title, "home" %>
 
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="center jumbotron">
+	<h1>walcome</h1>
+	<h2>
+		this is the home page for the 
+		<a href="http://google.com">my project</a>
+		sample
+	</h2>
+	<%= link_to "sing up", sign_path, class: "btn btn-lg btn-primary" %>
+</div>

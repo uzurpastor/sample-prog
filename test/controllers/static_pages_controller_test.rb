@@ -1,23 +1,33 @@
-require "test_helper"
+# require "test_helper"
 
-class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get home" do
-    get static_pages_home_url
-    assert_response :success
+# class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+#   test "should get home" do
+#     get static_pages_home_url
+#     assert_response :success
+#     assert_select "title", "home | ruby"
+#   end
 
-    assert_select "title", "home | ruby"
-  end
+#   test "should get help" do
+#     get static_pages_help_url
+#     assert_response :success
+#     assert_select "title", "help | ruby"
+#   end
 
-  test "should get help" do
-    get static_pages_help_url
-    assert_response :success
+#   test "should get about" do
+#     get static_pages_about_url
+#     assert_response :success
+#     assert_select "title", "about | ruby"
+#   end
+  
+#   test "should get contact" do 
+#     get static_pages_contact_url
+#     assert_response :success
+#     assert_select "title", "contact | ruby"
+#   end
 
-    assert_select "title", "help | ruby"
-  end
-  test "should get about" do
-    get static_pages_about_url
-    assert_response :success
-
-    assert_select "title", "about | ruby"
-  end
-end
+#   test "layout links" do 
+#     get root_path
+#     assert_template 'static_pages/home'
+#     assert_template "a[href=?]", root_path, count: 2
+#   end
+# end
