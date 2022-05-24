@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="_footer.css">
+<link rel="stylesheet" href="_header.css">
 
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <div class="container_logo">
       <%= link_to image_tag("rails.png", alt: "Rails logo"), 
-                                'http://rubyonrails.org/'%>
+                                root_path %>
     </div>
-    <%= link_to "sample app", "#", id:"logo" %>
+    <%= link_to "sample app", root_path, id:"logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home"  , root_path%></li>
