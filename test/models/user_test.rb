@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
       name:                  'xxxx',
       email:                 "aaaa@ddd.dd",
       password:              "somepass",
-      password_confirmation: "key4pass"
+      password_confirmation: "somepass"
     )
   end
 
@@ -19,14 +19,17 @@ class UserTest < ActiveSupport::TestCase
     @user.name = " "
     assert_not @user.valid?
   end
+
   test "email should be to present"do
     @user.email = " "
     assert_not @user.valid?
   end
+
   test "name need to be shortly then 50 symbols" do 
     @user.name = 'a' * 51
     assert_not @user.valid?
   end
+
   test "email need to be shortly then 250 symbols" do
     @user.email = 'a' * 251
     assert_not @user.valid?
@@ -35,6 +38,7 @@ class UserTest < ActiveSupport::TestCase
   test "email validatiln should be reject invalid adress" do 
     invalid_adresses = %w[
       shev.and.com 
+      shev.and@mail..com
       shev.and@mail.com.
       shev.and@mail.com,
       shev.and@mail,com
@@ -66,6 +70,7 @@ class UserTest < ActiveSupport::TestCase
       shean"d@mail.com
       sheand@
     ]
+      # shev..and@mail.com
       # .shev.and@mail.com
       # ,shev.and@mail.com
       # shev.and@.mail.com
@@ -80,7 +85,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "email should be unique" do 
     duple_user = @user.dup    
-    duple_user.email = @user.email.upcase
+    duple_user.email 
     @user.save
     assert_not duple_user.valid?
   end
@@ -89,9 +94,13 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = 'a' * 5
     assert_not @user.valid?
   end
-  # test "email should be downcase" do 
-  #   assert_not @user.valid?
-  # end
+
+  test "email should be downcase" do 
+    @user.email = text = "sOmeText@mail.dd"
+    @user.save
+    assert_equal text.downcase, @user.reload.email
+  end
+
 end
 
 # , # $ @ ) ( + - = ^ : ; * ! % № ` ~ / | \ ? > < ' "
