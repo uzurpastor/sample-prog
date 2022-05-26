@@ -1,7 +1,43 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@mixin box_sizing {
+	-moz-box-sizing: 	 border-box;
+	-webkit-box-sizing:  border-box;
+	box-sizing:			 border-box;
+}
 
+.debug_dump {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	@include box_sizing;
+}
 
+.user_info > img{
+	width: 300px;
+	height: auto;
+}
 
+input, textarea, select, .uneditable_input, .btn-register{
+	// border-bottom: 1px solid #000;
+	width: 100%;
+	margin-bottom: 30px;	
+	@include box_sizing;
+}
 
+// зачем нужен этот стиль?
+input{
+	height: auto !important;
+}
+
+$red: #f00;
+
+#error_explanation{
+	color: $red;
+	ul{
+		color: $red;
+		margin: 0, 0, 30px, 0;
+	}
+}

@@ -101,6 +101,11 @@ class UserTest < ActiveSupport::TestCase
     assert_equal text.downcase, @user.reload.email
   end
 
+  test "name should be capitalize" do 
+    @user.name = name_t = "usernaMe"    
+    @user.save
+    assert_equal name_t.capitalize, @user.reload.name
+  end
 end
 
 # , # $ @ ) ( + - = ^ : ; * ! % № ` ~ / | \ ? > < ' "

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	before_save { 
+		name.capitalize!
 		email.downcase! 
 	}
 	validates :name,  
@@ -14,6 +15,7 @@ class User < ApplicationRecord
 				uniqueness: 	{ case_sensitive: 	false }
 	
 	has_secure_password 
+	# password_confirmation
 	validates :password,
 				length: 		{ minimum: 			6}
 end
