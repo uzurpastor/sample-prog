@@ -22,7 +22,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                           email:                  "example@mail.com",
                                           password:               "example",
                                           password_confirmation:  "example" } }
-      follow_redirect!
+      # follow_redirect!
     end
     assert_template 'users/show'
     assert_equal "welcome to my app!", flash[:success]

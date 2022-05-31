@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title)%> | ruby</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% page_title = yield(:title) %>
+    <% page_title += ' | ' if page_title.present? %>
+    <title><%= page_title %>Ruby</title>    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

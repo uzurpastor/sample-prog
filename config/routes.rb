@@ -1,18 +1,24 @@
 Rails.application.routes.draw do
-  root                 'static_pages#home'
+  root      'static_pages#home'
+
+  controller :static_pages do 
+    get     'home'       => :home
+    get     'help'       => :help
+    get     'about'      => :about
+    get     'contact'    => :contact
+    get     'error404'   => :error404
+  end
+
+  controller :users do 
+    get     'sign'       => :new  
+    get     'show'       => :show    
+  end
+  
+  controller :sessions do
+    get     'login'      => :new  
+    post    'login'      => :create
+    get     'logout'     => :destroy
+  end
 
   resources :users
-
-  get 'users/new'
-  get  'home'       => 'static_pages#home'
-  get  'help'       => 'static_pages#help'
-  get  'about'      => 'static_pages#about'
-  get  'contact'    => 'static_pages#contact'
-  
-  get  'sign'       => 'users#new'  
-  get  'show'       => 'users#show'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

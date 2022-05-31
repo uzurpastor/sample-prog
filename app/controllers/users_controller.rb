@@ -16,11 +16,12 @@ class UsersController < ApplicationController
   def create 
     @user = User.new user_form
     if @user.save
+      log_in  @user
+      remember @user
       flash[:success] = "welcome to my app!"
       redirect_to @user
     else
       render 'new', status: :unprocessable_entity
-
     end
   end
   private
