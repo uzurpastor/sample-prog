@@ -1,6 +1,7 @@
 require "test_helper"
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
+
   def setup
     @user = users(:shevchenko)
   end
@@ -32,7 +33,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
     get logout_path 
     assert_not is_logged_in?
-    assert_redirected_toroot_url
+    assert_redirected_to home_path
 
     get logout_path 
     follow_redirect!
@@ -41,9 +42,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
   end
   
-  test "login with remembering" do
-    log_in_as(@user, remember_me: '1')
+  test "login with remembering" do    
+    log_in_as(@user, remember_me: '1') 
     assert_not_nil cookies['remember_token']
+    @request.cookies['remember_token'] = @user.remember_token   
   end
   
   test "login without remembering" do

@@ -10,3 +10,7 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+def register_default_assets
+register_stylesheet 'active_admin.css'
+register_javascript 'active_admin.js'
+end

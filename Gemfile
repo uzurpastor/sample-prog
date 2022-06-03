@@ -52,6 +52,30 @@ gem "bootstrap-sass"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# This gem is a port of Perl's Data::Faker library that generates fake data.
+# Faker generates data at random, returned values are not guaranteed to be unique by default
+gem 'faker'
+
+# Pagination library for Rails
+# gem 'will_paginate'
+
+# Integrates the Twitter Bootstrap pagination component with will_paginate
+# gem 'bootstrap-will_paginate'
+
+# Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
+gem 'activeadmin'
+
+# Flexible authentication solution for Rails with Warden
+gem 'devise'
+
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator 
+# for modern web app frameworks and ORMs
+gem 'kaminari'
+
+ # Basic Gem for quick default inclusion of Kaminari theme 
+ # compatible with Twitter Bootstrap 2.0 and Twitter Bootstrap 3.0
+gem 'bootstrap-kaminari-views'
+
 group :development, :test do
   # gem 'rspec-rails'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

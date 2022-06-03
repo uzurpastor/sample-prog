@@ -1,0 +1,10 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<%= paginate @users, class:"justify-content-center paginator" %>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= paginate @users, class:"center"%>

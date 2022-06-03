@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  
   root      'static_pages#home'
 
   controller :static_pages do 
@@ -9,9 +12,11 @@ Rails.application.routes.draw do
     get     'error404'   => :error404
   end
 
+  resources :users
   controller :users do 
     get     'sign'       => :new  
-    get     'show'       => :show    
+    get     'show'       => :show  
+    get     'index'      => :index
   end
   
   controller :sessions do
@@ -20,5 +25,4 @@ Rails.application.routes.draw do
     get     'logout'     => :destroy
   end
 
-  resources :users
 end

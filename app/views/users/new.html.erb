@@ -20,6 +20,8 @@
 			<%= f.label :password_confirmation, "Confirmation" %>
 			<%= f.password_field :password_confirmation%>
 
+			<%= f.check_box :remember_digest %>
+
 			<%= f.button "Create accout", class: "btn btn-primary btn-register" %>
 		<% end %>
 	</div>
