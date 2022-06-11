@@ -67,6 +67,9 @@ gem 'activeadmin'
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator 
 # for modern web app frameworks and ORMs

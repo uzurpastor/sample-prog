@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page]) #(page: params[:page], per_page: 10)
+    @users = User.page(params[:page]) 
   end
 
   def show
@@ -26,7 +26,8 @@ class UsersController < ApplicationController
     if @user.save
       check_remember
       log_in  @user
-      flash[:success] = "welcome to my app!" 
+      TechnicalMailer.account_activation(@user).deliver_now
+      flash[:success] = flash_text
       redirect_to @user
     else
       render 'new', status: :unprocessable_entity
@@ -46,8 +47,21 @@ class UsersController < ApplicationController
       render 'edit', status: :unprocessable_entity
     end
   end
+  def destroy
+      debugger
+      User.find(permitted_params[:id]).destroy
 
+    end
   private
+    def flash_text
+      success_text = unless use_gmail?
+        "Verificate your email"
+      else
+        "You cant verifycate. #{view_context.link_to 'More info', 'https://www.spamhaus.org/query/bl?ip=92.113.180.5'}"
+      end
+      "Welcome to my app!\n#{success_text}"
+    end
+
     def logged_in_user
       unless session[:user_id].present?
         store_location
@@ -55,7 +69,9 @@ class UsersController < ApplicationController
         redirect_to login_url
       end
     end
-    
+    def use_gmail?
+      @user.email.include? 'gmail'
+    end
     def correct_user
       @user = User.find(params[:id])
       redirect_to home_path unless current_user?(@user)

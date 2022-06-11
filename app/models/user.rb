@@ -1,10 +1,14 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
 
+  has_one :email_activation, dependent: :destroy
+  after_create :create_email_activation
   before_save { 
     name.capitalize!
     email.downcase! 
   }
+
+
   validates :name, presence:     true, 
                    length:     { maximum:  50 }
                    
@@ -16,6 +20,12 @@ class User < ApplicationRecord
   has_secure_password 
   validates :password, length:    { minimum:          6 },
                        allow_blank: true
+
+
+  def create_email_activation
+    puts 'after create'
+    EmailActivation.create(user_id: self.id)
+  end
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ?

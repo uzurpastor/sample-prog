@@ -106,6 +106,11 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_equal name_t.capitalize, @user.reload.name
   end
+
+  test "should create record in model EmailActivation with user_id as id user" do
+    @user.save
+    email_activation_record = EmailActivation.find_by(user_id: @user.id)
+    assert email_activation_record.present?
+  end
 end
 
-# , # $ @ ) ( + - = ^ : ; * ! % № ` ~ / | \ ? > < ' "

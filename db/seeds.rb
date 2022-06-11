@@ -11,13 +11,13 @@
 #              password:              "foobar",
 #              password_confirmation: "foobar")
 
-# 10.times do |n|
-#   name  = Faker::Name.first_name
-#   email = "#{Faker::Name.last_name}#{n}@mail.com"
-#   password = "password"
-#   User.create!(name:  name,
-#                email: email,
-#                password:              password,
-#                password_confirmation: password)
-# end
+50.times do |n|
+  name  = Faker::Name.first_name
+  email = "#{Faker::Name.last_name}#{n}@mail.com"
+  password = "password"
+  User.create!(name:  name,
+               email: email,
+               password:              password,
+               password_confirmation: password)
+end
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

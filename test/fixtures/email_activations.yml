@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   user_id: MyString
+#   activation_digest: MyText
+#   is_activated: false
+#   activated_at: 2022-06-06 13:33:23
+
+# two:
+#   user_id: MyString
+#   activation_digest: MyText
+#   is_activated: false
+#   activated_at: 2022-06-06 13:33:23
