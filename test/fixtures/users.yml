@@ -1,11 +1,10 @@
 # # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# shevchenko:
-#   id: 1
-#   name: Andrey
-#   email: example@mail.com
-#   password_digest: <%= User.digest('passwd') %>
-
+shevchenko:
+  name: Andrey
+  email: example@mail.com
+  password_digest: <%= User.digest('passwd') %>
+  email_activation: one
 # john:
 #   id: 2
 #   name: John

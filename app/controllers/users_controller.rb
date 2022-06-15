@@ -47,11 +47,11 @@ class UsersController < ApplicationController
       render 'edit', status: :unprocessable_entity
     end
   end
-  def destroy
-      debugger
-      User.find(permitted_params[:id]).destroy
+  # def destroy
+  #     debugger
+  #     User.find(permitted_params[:id]).destroy
 
-    end
+  #   end
   private
     def flash_text
       success_text = unless use_gmail?

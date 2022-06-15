@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_one :email_activation, dependent: :destroy
   after_create :create_email_activation
+  
   before_save { 
     name.capitalize!
     email.downcase! 
@@ -23,24 +24,16 @@ class User < ApplicationRecord
 
 
   def create_email_activation
-    puts 'after create'
-    EmailActivation.create(user_id: self.id)
-  end
-
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ?
-      BCrypt::Engine::MIN_COST :
-      BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
-
-  def User.new_token
-    SecureRandom.urlsafe_base64    
+    digest = User.create_activation_digest
+    email_activation = EmailActivation.create(  user_id: self.id,
+                                                is_activated: false,
+                                                activation_digest: digest ) 
+    email_activation.errors.full_messages unless email_activation.valid?
   end
 
   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token));
+    remember_token = new_token()
+    update_attribute(:remember_digest, digest(remember_token));
   end
 
   def authenticated?(remember_token)
