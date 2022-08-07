@@ -4,9 +4,6 @@ shevchenko:
   name: Andrey
   email: example@mail.com
   password_digest: <%= User.digest('passwd') %>
-  email_activation: one
-# john:
-#   id: 2
-#   name: John
-#   email: example_1@mail.com
-#   password_digest: <%= User.digest('password') %>
+  remember_digest: ""
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>

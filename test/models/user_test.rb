@@ -70,13 +70,6 @@ class UserTest < ActiveSupport::TestCase
       shean"d@mail.com
       sheand@
     ]
-      # shev..and@mail.com
-      # .shev.and@mail.com
-      # ,shev.and@mail.com
-      # shev.and@.mail.com
-      # shev.and@,mail.com
-      # shev.and.@mail.com
-      # shev.and,@mail.com
     invalid_adresses.each do |invalid_adress| 
       @user.email = invalid_adress
       assert_not @user.valid?, "#{invalid_adress.inspect} should be invalid"
