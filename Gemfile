@@ -62,14 +62,16 @@ gem 'faker'
 # Integrates the Twitter Bootstrap pagination component with will_paginate
 # gem 'bootstrap-will_paginate'
 
-# Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
-gem 'activeadmin'
+=begin # Gems for ActiveAdmin.
+  # Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
+  gem 'activeadmin'
 
-# Flexible authentication solution for Rails with Warden
-gem 'devise'
-gem 'cancancan'
-gem 'draper'
-gem 'pundit'
+  # Flexible authentication solution for Rails with Warden
+  gem 'devise'
+  gem 'cancancan'
+  gem 'draper'
+  gem 'pundit'
+=end
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator 
 # for modern web app frameworks and ORMs

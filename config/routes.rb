@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
 
   resources :account_activation, only: [:edit]
 
@@ -28,4 +26,4 @@ Rails.application.routes.draw do
 
 end
 
-  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+Rails.application.routes.default_url_options[:host] = 'localhost:3000'
