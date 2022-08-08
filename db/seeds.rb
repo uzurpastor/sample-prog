@@ -10,3 +10,9 @@
   EmailActivation.create!( user_id: user.id, 
                            activation_digest: Faker::Internet.device_token )
 end
+
+# User.create!(
+#   name: "Andrey",
+#   email: "shevchenko@mail.com",
+#   password: "passwd",
+#   password_confirmation: "passwd")
