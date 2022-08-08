@@ -24,6 +24,7 @@ class User < ApplicationRecord
 
 
   def create_email_activation
+    
     digest = User.create_activation_digest
     email_activation = EmailActivation.create(  user_id: self.id,
                                                 is_activated: false,
@@ -32,8 +33,7 @@ class User < ApplicationRecord
   end
 
   def remember
-    remember_token = new_token()
-    update_attribute(:remember_digest, digest(remember_token));
+    update_attribute(:remember_digest, digest( new_token() ));
   end
 
   def authenticated?(remember_token)

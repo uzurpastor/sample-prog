@@ -1,4 +1,9 @@
 module SessionsHelper
+  def log_in_and_remember user , params:
+    log_in user
+    params[:remember_me] == '1' ? remember(user) : forget(user)
+  end
+
   def log_in user
     session[:user_id] = user.id
   end

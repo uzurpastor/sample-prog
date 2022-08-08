@@ -1,12 +1,13 @@
 class SessionsController < ApplicationController
+
   def new
+    SessionsController.new()
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+    user = User.find_by_email params_session[:email]
+    if user && user.authenticate(params_session[:password])
+      log_in_and_remember user, params: params_session
       redirect_back_or user
     else
       flash.now[:danger] = 'Invalid email or password'
@@ -17,5 +18,11 @@ class SessionsController < ApplicationController
   def destroy
     log_out if logged?
     redirect_to home_path
+  end
+
+  private
+
+  def params_session
+    params.require(:session).permit(:email, :password, :remember_me)
   end
 end

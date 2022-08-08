@@ -37,12 +37,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_id params[:id]
+    # debugger
+      redirect_to login_path unless current_user
   end
 
   def update    
     @user = User.find params[:id] 
-    if @user.update(user_form)
+    if @user.update(params_user_for_edit)
       flash[:success] = "Profile upload!" # unless user_before == @user
       redirect_to @user
     else
@@ -95,6 +97,12 @@ class UsersController < ApplicationController
                                     :password, 
                                     :password_confirmation )
     end 
+
+    def params_user_for_edit
+      params.require(:user).permit( :name, 
+                                    :email )
+    end 
+
 end
 
 
