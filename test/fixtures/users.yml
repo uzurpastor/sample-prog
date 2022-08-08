@@ -1,9 +1,8 @@
-# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 shevchenko:
   name: Andrey
-  email: example@mail.com
+  email: shevchenko@mail.com
   password_digest: <%= User.digest('passwd') %>
-  remember_digest: ""
+  remember_digest: <%= User.digest('remember') %>
   created_at: <%= DateTime.now %>
   updated_at: <%= DateTime.now %>

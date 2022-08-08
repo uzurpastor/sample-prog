@@ -1,6 +1,8 @@
 require "test_helper"
+require "helpers/integration_test_helper"
 
 class UsersEditTest < ActionDispatch::IntegrationTest
+  include IntegrationTestHelper
 
   def setup
     @user = users(:shevchenko)
@@ -8,49 +10,55 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   test "uncorrect edit " do 
     log_in_as @user
-
     get edit_user_path(@user)
     assert_template 'users/edit'    
     assert flash.empty?
-    patch user_path(@user), params: { user: { name: '',
-                                              email: 'invalid',
-                                              password: 'passwd1',
-                                              password_confirmation: 'passwd2' } }
-    assert_template 'users/edit'
+
+    params_with_invalid_email = 
+      { 
+        user: 
+        { 
+          name: 'username',
+          email: 'emailmail.net',
+          password: 'passwd',
+          password_confirmation: 'passwd' 
+        } 
+      }
+
+
+      patch user_path(@user), params: params_with_invalid_email
+
     assert flash.empty?
-    
+    assert_template 'users/edit'
   end
 
   test 'correct edit' do 
     log_in_as @user
-
-    name = @user.name
-    email = @user.email 
-
     get edit_user_path(@user)
     assert_template 'users/edit'    
     assert flash.empty?
-    patch user_path(@user), params: { user: { name: 'Oleg',
-                                              email: 'valid.email@mail.net',
-                                              password: 'passwd',
-                                              password_confirmation: 'passwd' } }
+
+    user_before_edit = @user
+    json = data_as_hash_from @user, :id, :name, :email
+    json[:user].merge! name: "Oleg"
+
+      patch user_path(@user), params: json
+    
     assert_redirected_to @user
     follow_redirect!
+
     assert_template 'users/show'
     assert_equal "Profile upload!", flash[:success]
-    should_right_edit(name: name, email: email)
+    
     @user.reload
-    assert_equal name, @user.name
-    assert_equal email, @user.email
+    assert_equal json[:user][:name], @user.name
   end
 
   test "success frendly redirect to edit page" do 
 
-    get edit_user_path(@user)
-    log_in_as(@user)
+    get edit_user_path @user
+    assert_redirected_to login_path
+    log_in_as @user
     assert_redirected_to edit_user_path(@user)
-
   end
-
-
 end
