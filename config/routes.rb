@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   resources :users
   controller :users do 
     get     'sign'       => :new  
-    get     'show'       => :show  
-    get     'index'      => :index
   end
   
   controller :sessions do
