@@ -26,9 +26,11 @@ class UsersController < ApplicationController
     if @user.save
       check_remember
       log_in  @user
-      TechnicalMailer.account_activation(@user).deliver_now
-      flash[:success] = flash_text
-      redirect_to @user
+      TechnicalMailer.account_activation(@user).deliver_later
+      redirect_to user_path(@user), layout: "users/show",
+                  action: :show,
+                  status: :created, 
+                  flash: { success: flash_text }
     else
       render 'new', status: :unprocessable_entity
     end
@@ -69,9 +71,11 @@ class UsersController < ApplicationController
         redirect_to login_url
       end
     end
+
     def use_gmail?
       @user.email.include? 'gmail'
     end
+
     def correct_user
       @user = User.find(params[:id])
       redirect_to home_path unless current_user?(@user)
