@@ -22,15 +22,16 @@ class UsersController < ApplicationController
   end
 
   def create 
-    @user = User.new user_form
+    @user = User.new params_user
     if @user.save
       check_remember
       log_in  @user
       TechnicalMailer.account_activation(@user).deliver_later
-      redirect_to user_path(@user), layout: "users/show",
-                  action: :show,
-                  status: :created, 
-                  flash: { success: flash_text }
+      redirect_to user_path(@user), 
+        layout: "users/show",
+        action: :show,
+        status: :created, 
+        flash: { success: flash_text }
     else
       render 'new', status: :unprocessable_entity
     end
@@ -38,15 +39,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by_id params[:id]
-    # debugger
       redirect_to login_path unless current_user
   end
 
   def update    
     @user = User.find params[:id] 
     if @user.update(params_user_for_edit)
-      flash[:success] = "Profile upload!" # unless user_before == @user
-      redirect_to @user
+      redirect_to @user,
+        flash: { success: "Profile upload!" }
     else
       render 'edit', status: :unprocessable_entity
     end
@@ -69,8 +69,8 @@ class UsersController < ApplicationController
     def logged_in_user
       unless session[:user_id].present?
         store_location
-        flash[:danger]  = "Log in!"
-        redirect_to login_url
+        redirect_to login_url,
+          flash: { danger: "Log in!" }
       end
     end
 
@@ -91,16 +91,20 @@ class UsersController < ApplicationController
       end
     end
 
-    def user_form
-      params.require(:user).permit( :name, 
-                                    :email, 
-                                    :password, 
-                                    :password_confirmation )
+    def params_user
+      params.require(:user)
+        .permit( 
+          :name, 
+          :email, 
+          :password, 
+          :password_confirmation )
     end 
 
     def params_user_for_edit
-      params.require(:user).permit( :name, 
-                                    :email )
+      params.require(:user)
+        .permit( 
+          :name, 
+          :email )
     end 
 
 end
