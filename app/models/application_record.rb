@@ -4,6 +4,10 @@ class ApplicationRecord < ActiveRecord::Base
   def self.new_token
     SecureRandom.urlsafe_base64    
   end
+  
+  def new_token
+    SecureRandom.urlsafe_base64    
+  end
 
   def digest(string)
     cost = ActiveModel::SecurePassword.min_cost ?

@@ -1,6 +1,8 @@
 require "test_helper"
+require "helpers/integration_test_helper"
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
+  include IntegrationTestHelper
 
   def setup
     @user = users(:shevchenko)
@@ -44,6 +46,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   
   test "login with remembering" do    
     log_in_as(@user, remember_me: '1') 
+    # debugger
     assert_not_nil cookies['remember_token']
     @request.cookies['remember_token'] = @user.remember_token   
   end
