@@ -2,7 +2,7 @@
 
 one:
   user_id: shevchenko
-  activation_digest: <%= User.digest("xxxxx") %>
+  activation_digest: <%= CrypterService.digest("xxxxx") %>
   activated_at: 2022-06-06 13:33:23
 
 

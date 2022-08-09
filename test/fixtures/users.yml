@@ -2,7 +2,7 @@
 shevchenko:
   name: Andrey
   email: shevchenko@mail.com
-  password_digest: <%= User.digest('passwd') %>
-  remember_digest: <%= User.digest('remember') %>
+  password_digest: <%= CrypterService.digest('passwd') %>
+  remember_digest: <%= CrypterService.digest('remember') %>
   created_at: <%= DateTime.now %>
   updated_at: <%= DateTime.now %>
