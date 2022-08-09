@@ -2,6 +2,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token
 
   has_one :email_activation, dependent: :destroy
+  has_one :admin, dependent: :destroy
+  
   after_create :create_email_activation
   
   before_save { 
