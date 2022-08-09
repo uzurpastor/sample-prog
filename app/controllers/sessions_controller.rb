@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       log_in_and_remember user, params: params_session
       redirect_back_or user
     else
+      flash.now[:danger] =  'Invalid email or password' 
       render 'new', 
-        flash: { danger: 'Invalid email or password' },
         status: :unprocessable_entity 
     end
   end
