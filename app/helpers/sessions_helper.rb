@@ -1,5 +1,6 @@
 module SessionsHelper
   def log_in_and_remember user , params:
+    # LoginService.create_new_session_and_remember user, params: params
     log_in user
     params[:remember_me] == '1' ? remember(user) : forget(user)
   end

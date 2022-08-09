@@ -32,8 +32,8 @@ class User < ApplicationRecord
     email_activation.errors.full_messages unless email_activation.valid?
   end
 
-  def remember
-    update_attribute(:remember_digest, CrypterService.digest_from_new_token);
+  def remember token
+    update_attribute(:remember_digest, token );
   end
 
   def authenticated?(remember_token)
