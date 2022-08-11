@@ -15,3 +15,10 @@ user_<%= n %>:
   password_digest: <%= CrypterService.digest( Faker::Internet.password min_length: 6 ) %>
 
   <% end %>
+
+admin:
+  name: Admin
+  email: administrator@mail.com
+  password_digest: <%= CrypterService.digest 'passwd' %>
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
