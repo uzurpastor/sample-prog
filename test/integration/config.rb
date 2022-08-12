@@ -1,0 +1,3 @@
+require "helpers/integration_test_helper"
+
+include IntegrationTestHelper

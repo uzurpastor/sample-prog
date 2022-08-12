@@ -1,8 +1,7 @@
 require "test_helper"
-require "helpers/integration_test_helper"
+require "integration/config.rb"
 
 class UsersEditTest < ActionDispatch::IntegrationTest
-  include IntegrationTestHelper
 
   def setup
     @user = users(:shevchenko)

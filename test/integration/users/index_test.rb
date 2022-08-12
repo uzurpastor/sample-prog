@@ -1,8 +1,7 @@
 require "test_helper"
-require "helpers/integration_test_helper"
+require "integration/config.rb"
 
 class UsersIndexTest < ActionDispatch::IntegrationTest 
-  include IntegrationTestHelper
   test 'index includeing pagination' do
     log_in_as users :shevchenko
 
