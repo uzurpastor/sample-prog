@@ -1,4 +1,4 @@
 
-adm:
-  user_id: admin
+one:
+  user: admin
   is_admin: true

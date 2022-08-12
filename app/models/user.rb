@@ -46,4 +46,9 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  def admin?
+    return false if self.admin.blank?
+    self.admin.is_admin?
+  end
 end

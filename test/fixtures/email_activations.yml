@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: shevchenko
+  user: shevchenko 
   activation_digest: <%= CrypterService.digest("xxxxx") %>
   activated_at: 2022-06-06 13:33:23
 

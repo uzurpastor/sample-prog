@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :index,          only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
 
@@ -51,12 +51,14 @@ class UsersController < ApplicationController
       render 'edit', status: :unprocessable_entity
     end
   end
-  # def destroy
-  #     debugger
-  #     User.find(permitted_params[:id]).destroy
+  def destroy
+      User.find(params[:id]).destroy
+      redirect_to users_path,
+        flash: {success: "User deleted"}
+    end
 
-  #   end
   private
+
     def flash_text
       success_text = unless use_gmail?
         "Verificate your email"
