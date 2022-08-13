@@ -107,7 +107,8 @@ class UsersController < ApplicationController
       params.require(:user)
         .permit( 
           :name, 
-          :email )
+          :email,
+          :avatar )
     end 
 
 end
