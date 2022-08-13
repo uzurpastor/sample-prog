@@ -1,10 +1,16 @@
 <% provide(:title, 'All users') %>
+<!-- Flash -->
+<% flash.each do |msg_t, msg| %>
+<div class="alert alert-<%= msg_t %>">
+  <%=  msg %>
+</div>    
+<% end %>
+<!-- Paginate controller -->
 <h1>All users</h1>
-
 <%= paginate @users, class:"justify-content-center paginator" %>
-
+<!-- Content: user list -->
 <ul class="users">
   <%= render @users %>
 </ul>
 
-<%= paginate @users, class:"center"%>
+<%= paginate @users, class:"center"%>s

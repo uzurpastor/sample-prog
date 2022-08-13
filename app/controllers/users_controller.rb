@@ -51,11 +51,12 @@ class UsersController < ApplicationController
       render 'edit', status: :unprocessable_entity
     end
   end
+
   def destroy
-      User.find(params[:id]).destroy
-      redirect_to users_path,
-        flash: {success: "User deleted"}
-    end
+    user = User.find(params[:id]).destroy
+    flash[:success] = "User #{user.name} deleted (#{user.email})"
+    redirect_to users_path
+  end
 
   private
 

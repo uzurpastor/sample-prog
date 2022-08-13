@@ -24,8 +24,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     User.page(1).each do |user|
       assert_select 'a[href=?]', user_path(user), 
                                   text: user.name
-      assert_select 'a[href=?]', user_path(user),
-                                  method: :delete,
+      assert_select 'a[href=?]', destroy_user_path(user),
                                   text: 'delete'
     end
     assert_difference 'User.count', -1 do 

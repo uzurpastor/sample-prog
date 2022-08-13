@@ -11,9 +11,13 @@ Rails.application.routes.draw do
     get     'error404'   => :error404
   end
 
-  resources :users
+  resources :users 
   controller :users do 
-    get     'sign'       => :new  
+    get     'sign'       => :new 
+    get 'destroy_user/:id', 
+      action: :destroy, 
+      as: :destroy_user
+
   end
   
   controller :sessions do
