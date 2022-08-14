@@ -2,7 +2,7 @@ require "test_helper"
 require "integration/config.rb"
 
 class UsersIndexTest < ActionDispatch::IntegrationTest 
-  test 'index includeing pagination' do
+  test 'index including pagination' do
     log_in_as users :shevchenko
 
     get users_path
@@ -30,5 +30,13 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', -1 do 
       delete user_path(users :shevchenko)
     end
+  end
+  test 'should view avatar' do
+    log_in_as users :shevchenko
+    get users_path
+    User.page(1).each do |user|
+      assert_select 'img[src=?]', '/assets/user-icon-9b6be20f75f7fd16f724df3f9565bae9354a63aad3417fb9d38372c4ac3fbb98.jpg'
+    end
+
   end
 end
