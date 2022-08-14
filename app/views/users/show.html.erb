@@ -5,7 +5,7 @@
 			<%=  msg %>
 		</div>		
 	<% end %>	
-	<%= gravatar_for @user, size: 250 %>
+	<%= render "shared/avatar_display", user: @user, width: 200 %>	
 	<h1><%= @user.name  %></h1>
 	<h3><%= @user.email %></h2>
 </section>

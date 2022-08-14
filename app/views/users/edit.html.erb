@@ -4,24 +4,17 @@
 	<div class="col-md-6 col-md-offset-3">
 		<%= form_for(@user) do |f| %>
 			<%= render 'shared/error_messages' if @user.errors.any?%>
-
-			<div class="gravatar_edit center">
-				<%= gravatar_for @user, size: 80 %><br />
-				<a href="http://gravatar.com/emails" target="_blank">Change</a>
+			<div class="center">
+				<%= render "shared/avatar_display", user: @user, width: 150 %>	
 			</div>
+			<%= f.file_field :avatar, class: 'form-control', accept: 'image/png,image/jpeg'%>			
 
 			<%= f.label :name %>
 			<%= f.text_field :name, class: 'form-control' %>
 			
 			<%= f.label :email %>
 			<%= f.email_field :email, class: 'form-control' %>
-			
-			<%= f.label :password %>
-			<%= f.password_field :password, class: 'form-control' %>
-			
-			<%= f.label :password_confirmation, "Confirmation" %>
-			<%= f.password_field :password_confirmation, class: 'form-control' %>
-			
+
 			<%= f.submit "Save changes", class: "btn btn-primary" %>
 		<% end %>
 	</div>
