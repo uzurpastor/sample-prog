@@ -19,6 +19,7 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem "bcrypt", "~> 3.1.7"
 gem 'faker'
+gem 'aws-sdk-s3'
 
 =begin 
   gem 'activeadmin'
