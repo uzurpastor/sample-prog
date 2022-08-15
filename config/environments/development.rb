@@ -20,7 +20,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.active_storage.service = :amazon
+  config.active_storage.service = :local
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.sendmail_settings = {
     
