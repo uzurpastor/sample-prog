@@ -1,9 +1,6 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyString
-  user: one
-
-two:
-  content: MyString
-  user: two
+<% (1..5).reverse_each do |n| %>
+post_<%= n %>:
+  content: <%= Faker::Lorem.paragraph sentence_count: 2 %>
+  created_at: <%= n.hours.ago %>
+<% end %>

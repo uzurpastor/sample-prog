@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_one :email_activation, dependent: :destroy
   has_one :admin, dependent: :destroy
   has_one_attached :avatar
-  has_many :posts
+  has_many :posts, dependent: :destroy
   
   after_create :create_email_activation
   
