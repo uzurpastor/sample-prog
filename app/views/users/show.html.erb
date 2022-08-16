@@ -1,15 +1,24 @@
 <% provide :title, "User "+@user.name %>
-<section class="user_info center">
+<section class="user_info col-md-8">
 	<% flash.each do |msg_t, msg| %>
 		<div class="alert alert-<%= msg_t %>">
 			<%=  msg %>
-		</div>		
+		</div>
 	<% end %>	
+
 	<%= render "shared/avatar_display", user: @user, width: 200 %>	
 	<h1><%= @user.name  %></h1>
 	<h3><%= @user.email %></h2>
+</section>
+
+<section class="col-md-4">
+	<% if current_user? @user %>
+		<%= render 'posts/new', post: @user.posts.new %>
+	<% end %>
+</section>
+
 	<div class="col-md-12">
-		<% if @user.posts.any? %>
+		<% if @posts.any? %>
 			<h3> Posts (<%= @user.posts.count %>)</h3>			
 			<ol class="posts">
 				<%= render @posts %>
@@ -17,4 +26,3 @@
 			<%= paginate @posts %>
 		<% end %>
 	</div>
-</section>

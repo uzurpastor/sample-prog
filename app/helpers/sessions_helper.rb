@@ -21,6 +21,10 @@ module SessionsHelper
     end
   end
 
+  def on_current_user_page? user_id
+    current_user.id == user_id.to_i
+  end
+
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
