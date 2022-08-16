@@ -70,14 +70,6 @@ class UsersController < ApplicationController
       "Welcome to my app!\n#{success_text}"
     end
 
-    def logged_in_user
-      unless session[:user_id].present?
-        store_location
-        redirect_to login_url,
-          flash: { danger: "Log in!" }
-      end
-    end
-
     def use_gmail?
       @user.email.include? 'gmail'
     end
