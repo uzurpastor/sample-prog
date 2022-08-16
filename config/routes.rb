@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :account_activation, only: [:edit]
-
   root      'static_pages#home'
   controller :static_pages do 
     get     'home'       => :home
@@ -25,6 +23,9 @@ Rails.application.routes.draw do
     post    'login'      => :create
     get     'logout'     => :destroy
   end
+
+  # resources :account_activation, only: [:edit]
+  resources :posts, only: [:create, :destroy]
 
 end
 
