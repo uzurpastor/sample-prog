@@ -1,5 +1,5 @@
 <% provide :title, "User "+@user.name %>
-<section class="user_info col-md-8">
+<section class="user_info center 	col-md-8">
 	<% flash.each do |msg_t, msg| %>
 		<div class="alert alert-<%= msg_t %>">
 			<%=  msg %>
@@ -11,18 +11,18 @@
 	<h3><%= @user.email %></h2>
 </section>
 
-<section class="col-md-4">
+<section class="col-md-4 center ">
 	<% if current_user? @user %>
 		<%= render 'posts/new', post: @user.posts.new %>
 	<% end %>
 </section>
 
-	<div class="col-md-12">
-		<% if @posts.any? %>
-			<h3> Posts (<%= @user.posts.count %>)</h3>			
-			<ol class="posts">
-				<%= render @posts %>
-			</ol>
-			<%= paginate @posts %>
-		<% end %>
-	</div>
+<div class="col-md-12">
+	<% if @posts.any? %>
+		<h3> Posts (<%= @user.posts.count %>)</h3>			
+		<ol class="posts">
+			<%= render @posts %>
+		</ol>
+		<%= paginate @posts %>
+	<% end %>
+</div>
