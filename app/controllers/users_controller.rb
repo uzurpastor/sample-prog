@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     begin
       record = User.find params[:id]
       @user = record
+      @posts = @user.posts.page(params[:page])
     rescue ActiveRecord::RecordNotFound => e
       redirect_to "/sign" 
     end
